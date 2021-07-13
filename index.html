@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Packman Game</title>
+		<link rel="icon" type="image/png" href="./resources/images/PackmanRight.png">
+
+		<link rel="stylesheet" type="text/css" href="./resources/css/style.css">
+		<script src="./jquery-3.4.1.slim.min.js"></script>
+		
+		<script type="text/javascript" src="./app.js"></script>
+		<script type="text/javascript" src="./forms.js"></script>
+		<script type="text/javascript" src="./Monster.js"></script>
+		<script type="text/javascript" src="./MovingScore.js"></script>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+		<script src="https://kit.fontawesome.com/c0773c3134.js" crossorigin="anonymous"></script>
+		
+		<script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/additional-methods.js"></script>
+	</head>
+
+	<body>
+		<!-- MENU -->
+		<div class="topnav">
+			<div class="menu-navigation-dark">
+				<a id="welcome_menu" onclick="menu('welcome')"><i class="fas fa-door-open"></i><span>Welcome</span></a>
+				<a id="login_menu" onclick="menu('login')"><i class="fa fa-sign-in"></i><span>Login</span></a>
+				<a id="register_menu" onclick="menu('register')"><i class="far fa-registered"></i><span>Register</span></a>
+				<a id="about_menu" onclick="menu('about')"><i class="fa fa-info-circle"></i><span>About</span></a>
+			</div>
+		</div>
+		<div>
+			<img id='pacman-background' class='logo' src="./resources/images/pacman-background.png">
+			<img id='welcome_logo_2' class='logo' src="./resources/images/Welcome_1.png">
+
+		</div>
+
+		<!--WELCOME -->
+		<div id="welcome" class="menu" div=60% style="text-align:center">
+				<img id='welcome_logo_1' class='logo' src="./resources/images/logo.png">
+				<br>
+				<button id='register_button' class='welcome_button' onclick="menu('register')"> Register</button>
+				&nbsp &nbsp &nbsp &nbsp
+				<button id='login_button_1' class='welcome_button' onclick="menu('login')"> Login </button>
+		</div>
+
+		<!--REGISTER -->
+		<div id="register" class="menu">
+			<img id='RegisterLogo' src="./resources/images/logo.png" />
+			<h2>Register</h2>
+			<form id="form_registration" font-family="Comic sans MS">
+				<table align="center" width="90%">
+					<tr>
+						<td width="40%">UserName:</td>
+						<td width="60%"><input type="text" name="r_userName_n" id="r_username_ID" placeholder="Please enter UserName" width="90%"/></td>
+					</tr>
+
+					<tr><td>&nbsp</td></tr>
+
+					<tr>
+						<td>Password:</td>
+						<td><input type="password" name="r_password_n" id="r_password_ID" placeholder="Please enter Password" autocomplete="on"/></td>
+					</tr>
+
+					<tr><td>&nbsp</td></tr>
+					
+					<tr>
+						<td>Full Name:</td>
+						<td><input type="text" name="name_n" id="name_ID"placeholder="Please enter Full Name"/></td>
+					</tr>
+
+					<tr><td>&nbsp</td></tr>
+					
+					<tr>
+
+						<td>E-Mail Address:</td>
+						<td><input type="email" name="email_n" id="email_ID" placeholder="Please enter E-Mail"/></td>
+					</tr>
+
+					<tr><td>&nbsp</td></tr>
+
+					<tr>
+						<td>Birthday:</td>
+						<td><input type="date" name="birthday_n" id="birthday_ID"/></td>
+					</tr>
+					
+					<tr>
+						<td colspan="2"><input type="submit" value="Register" id="register_button1"/></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+
+		<!--LOGIN -->
+		<div id="login" class="menu">
+			<img id='LoginLogo' src="./resources/images/logo.png" />
+			<h1 style="margin-top: 10%;">Login</h1>
+			<form class="cmxform" id="form_login" style="text-align: left;" >
+				<left>UserName:</left>
+				<br>
+				<input type="text" width="100%" name="l_userName_n" id="l_username_ID" placeholder="Please enter UserName"/>
+				<br>
+				<left>Password:</left>
+				<br>
+				<input type="password" width="100%"  name="l_password_n" id="l_password_ID" placeholder="Please enter Password" autocomplete="on"/>
+				<br><br>
+				<center>
+					<input type="submit" value="Login" id="login_button_2"/></td>
+				</center>
+			</form>
+		</div>
+
+
+		<!--SETTINGS -->
+		<div id="settings" class="menu">
+			<h1>Settings</h1>
+			<form class="cmxform" id="form_settings">
+				<table align="center" style="margin-right: 10%;">
+					<tr>
+						<td width="40%">Key Down</td>
+						<td colspan="6">
+							<input type="button" value="Down Arrow" name="downArrow_n" id="downArrow" onclick="ChangeKeysSetting('Down')"/>
+						</td>
+					</tr>
+					<tr>
+						<td>Key Up</td>
+						<td width="40%" colspan="6">
+							<input type="button" value="Up Arrow" name="upArrow_n" id="upArrow" onclick="ChangeKeysSetting('Up')"/>
+						</td>
+					</tr>	
+					<tr>
+						<td>Key Left</td>
+						<td colspan="6">
+							<input type="button" value="Left Arrow" name="leftArrow_n" id="leftArrow" onclick="ChangeKeysSetting('Left')"/>
+						</td>
+					</tr>
+					<tr>
+						<td>Key Right</td>
+						<td colspan="6">
+							<input type="button" value="Right Arrow" name="rightArrow_n" id="rightArrow" onclick="ChangeKeysSetting('Right')"/>
+						</td>
+					</tr>
+					<tr>
+						<td>Amount of Balls:</td>
+						<td colspan="2"><input type="text" id="ballsNumber" value="75" readonly="true"></td>
+						<td colspan="5"><input type="range" name="rangeInput_b" id="rangeInput_b_ID" value="75" min="50" max="90" oninput="this.form.ballsNumber.value=this.value" width="100%"></td>
+					</tr>
+					<tr>
+						<td>Amount of Monsters:</td>
+						<td colspan="2"><input type="text" id="amountMonsters" value="2" readonly="true"></td>
+						<td colspan="5"><input type="range" name="rangeInput_m" id="rangeInput_m_ID" value="2" min="1" max="4" oninput="this.form.amountMonsters.value=this.value" width="100%"></td>
+					</tr>
+					<tr>
+						<td>Choose a Color for the Balls:</td>
+						<td colspan="2">5 Point:</td>
+						<td colspan="5"><input type="color" id="colorOne_ID" name="colorOne_n" value="#66ff66"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td colspan="2">15 Point:</td>
+						<td colspan="5"><input type="color" id="colorTwo_ID" name="colorTwo_n" value="#ff6666"></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td colspan="2">25 Point:</td>
+						<td colspan="5"><input type="color" id="colorThree_ID" name="colorThree_n" value="#6699ff"></td>
+					</tr>
+					<tr>
+						<td>Game Time (in sec):</td>
+						<td>
+							<div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+							<input type="number" id="number" name="number_n" value="60" /> 
+							<div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+						</td>
+					</tr>
+				</table>
+				<br>
+				<input type="submit" value="Submit" id="setting_button"/>
+				<input type="button" value="Random" id="random_button" onclick="RandomSettings()"/>
+			</form>
+		</div>
+
+		<!--About -->
+		<div id="myModal" class="modal" class="menu">
+		  <div class="modal-content">
+			<span class="close">&times;</span>
+			<p>
+				<p>
+					<img id='AboutLogo' src="./resources/images/logo.png" />
+				</p>
+				<br>
+				This game brought to you by: 
+				<b>Shahar Tal and Osher Daniel</b>
+				<br><br>
+				<b>JQuery Plugin:</b> 
+				<br>
+				Validation in Register, Login and Settings forms.
+				<br><br>
+				<b>Difficulties in writing the work:</b>
+				<br>
+				There is no easy way to debug the website.
+			</p>
+
+		  </div>
+		</div>
+
+		<!--GAME -->
+		<div id="gameMode" class="menu">
+			<table style="margin-top: -5%;">
+				<tr width="70%"> 
+					<td rowspan="18"> 
+						<canvas id="canvas" style="background-color: white; border: none; margin-top: 10px;" height="600" width="600"></canvas>
+					</td>
+
+					<td width="20%">
+						<table style="font-size: large;">
+							<tr>
+								<td colspan="4"><label id="msgAlert" class="label" readonly="readonly" style="font-size: x-large; font-weight: bold;"></label></td>
+							</tr>
+							<tr>
+								<td><b>Score:</b></td>
+								<td><input id="lblScore" type="text" /></td>
+								<td><b>Time:</b></td>
+								<td><input id="lblTime" type="text" /></td>
+							</tr>
+							<tr>
+								<td colspan="4"><label for="lblLife"><b>Life:</b></label></td>
+							</tr>
+								<td colspan="4"><div id="lifeDiv"></div></td>
+							</tr>
+							
+							<tr><td><br><br></td></tr>
+
+							<tr>
+								<td>User:</td>
+								<td><label id="userNameGame" class="label" readonly="readonly"></label><br></td>
+							</tr>
+							<tr>
+								<td colspan="4"><b>Keys:</b></td>
+							</tr>
+							<tr>
+								<td><u>Up:</u></td>
+								<td><label id="upKey" class="label" readonly="readonly"></label></td>
+								<td><u>Down:</u></td>
+								<td><label id="downKey" class="label" readonly="readonly"></label></td>
+							</tr>	
+							<tr>
+								<td><u>Right:</u></td>
+								<td><label id="rightKey" class="label" readonly="readonly"></label></td>
+								<td><u>Left:</u></td>
+								<td><label id="leftKey" class="label" readonly="readonly"></label></td>
+							</tr>
+
+							<tr><td><br><br></td></tr>
+
+							<tr>
+								<td colspan="4"><b>More Settings:</b></td>
+							</tr>
+							<tr>
+								<td colspan="3">Amount of Balls:</td>
+								<td><label id="amountBalls" class="label" readonly="readonly"></label></td>
+							</tr>
+							<tr>
+								<td colspan="4">Ball Colors:</td>
+							</tr>
+							<tr>
+								<td colspan="2">5 Points:</td>
+								<td colspan="2"><input type="color" id="color5" readonly="true"></td>
+							</tr>
+							<tr>
+								<td colspan="2">15 Points:</td>
+								<td colspan="2"><input type="color" id="color15" readonly="true"></td>
+							</tr>
+							<tr>
+								<td colspan="2">25 Points:</td>
+								<td colspan="2"><input type="color" id="color25" readonly="true"></td>
+							</tr>
+							<tr>
+								<td colspan="3">Amount of Monsters:</td>
+								<td><label id="amountMonsters_g" class="label" readonly="readonly"></label></td>
+							</tr>
+							<tr>
+								<td colspan="3">Game Total Time:</td>
+								<td><label id="gameTotalTime" class="label" readonly="readonly"></label></td>
+							</tr>
+
+							<tr><td><br><br></td></tr>
+
+							<tr>
+								<td colspan="4"><button id='newGameButton' onclick="Login()" style="font-family:'Comic sans MS'"> New Game </button></td>
+							</tr>
+						</table>
+					</td>		
+
+					<td width="10%" rowspan="3">
+						<button id="AudioButton" onclick="MuteAudio()" type="button" style="background-color: white;"><img src="./resources/images/UnMute.png" height="75px" id="mute_img" width="75px"/></button>
+						<div id="settingGame">
+							<audio id="myAudio" height="10px">
+								<source src="./resources/audio/Background-Audio.mp3" type="audio/ogg">
+							</audio>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<footer>
+			The site was created by Shachar Tal and Osher Daniel <br>
+			Contact details: shaharap @ post @ bgu.ac.il and oshemac@post.bgu.ac.il		
+		</footer>
+	</body>
+</html>
